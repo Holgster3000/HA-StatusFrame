@@ -1,0 +1,4867 @@
+[
+  {
+    "id": "e6e7aa1316a943eb",
+    "type": "tab",
+    "label": "HA StatusFrame V2 – LED Assignment",
+    "disabled": true,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "79034e6de3404726",
+    "type": "mqtt out",
+    "z": "e6e7aa1316a943eb",
+    "name": "State MQTT out",
+    "topic": "stoermeldeboard/states",
+    "qos": "1",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "7a9931dde927938b",
+    "x": 1440,
+    "y": 520,
+    "wires": []
+  },
+  {
+    "id": "e151600f2a254a6c",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Open DTU Status",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.opendtu_cmt_status"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": true,
+    "ignoreCurrentStateUnavailable": true,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 500,
+    "wires": [
+      [
+        "6dc70c7e53af4046"
+      ]
+    ]
+  },
+  {
+    "id": "477e8662e4174b49",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "HMS reachable",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.hms1600_reachable"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": true,
+    "ignoreCurrentStateUnavailable": true,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 440,
+    "wires": [
+      [
+        "429627c186e94e61"
+      ]
+    ]
+  },
+  {
+    "id": "0b6f54de799749cb",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "MPPT error",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.victronble_mppt_has_error"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": true,
+    "ignoreCurrentStateUnavailable": true,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 560,
+    "wires": [
+      [
+        "7e34855d589b4501"
+      ]
+    ]
+  },
+  {
+    "id": "6dc70c7e53af4046",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 1",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"opendtu_ok\", state === \"on\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 500,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "429627c186e94e61",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 2",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"hms_ok\", state === \"on\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 440,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "7e34855d589b4501",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 3",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"victron_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 560,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "1a522c925c2d47f0",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Build states",
+    "func": "// HA StatusFrame V2 – physical LED numbers 1..30, array index = LED number - 1\n// N=off, NP=pulsing green, A=solid red, AB=blinking red, H=pulsing blue\nconst now=Date.now();\nconst val=k=>flow.get(k);\nconst valid=v=>v!==undefined && v!==null && ![\"unknown\",\"unavailable\",\"\"].includes(String(v).toLowerCase());\nconst isHome=k=>val(k)===\"home\";\nconst isOn=k=>val(k)===\"on\";\nconst leds=Array(30).fill(\"N\");\n// 1–5: existing status monitors\nleds[0]=flow.get(\"internet_ok\")===true ? \"N\":\"AB\";\nleds[1]=flow.get(\"hms_ok\")===true ? \"N\":\"AB\";\nleds[2]=flow.get(\"opendtu_ok\")===true ? \"N\":\"AB\";\nleds[3]=flow.get(\"victron_ok\")===true ? \"N\":\"AB\";\nleds[4]=(val(\"ccu3_hmip_state\")===\"on\" && val(\"ccu3_virtual_state\")===\"on\") ? \"N\":\"AB\";\n// 6 Sungrow network\nleds[5]=isHome(\"sungrow_reachable\") ? \"N\":\"AB\";\n// 7 Heat pump: bus / EMS / compressor alarm / compressor running\nconst wpError=val(\"wp_system\")!==\"on\" || val(\"wp_bus\")!==\"connected\" || !valid(val(\"wp_activity\")) || ![\"on\",\"off\"].includes(String(val(\"wp_compressor\"))) || val(\"wp_activity\")===\"compressor alarm\";\nleds[6]=wpError ? \"AB\" : isOn(\"wp_compressor\") ? \"NP\":\"N\";\n// 8 Wallbox OCPP and hourly heartbeat (90-minute tolerance)\nconst wbState=val(\"wallbox_status\");\nconst hb=val(\"wallbox_heartbeat\");\nlet hbTime=NaN;\nif (valid(hb)) {\n  const n=Number(hb);\n  hbTime=Number.isFinite(n) && String(hb).trim()!==\"\" ? (n>1e12?n:n>1e9?n*1000:NaN) : Date.parse(String(hb));\n}\nconst wbError=!valid(wbState) || wbState===\"Faulted\" || !Number.isFinite(hbTime) || hbTime>now+60000 || now-hbTime>90*60000;\nleds[7]=wbError ? \"AB\" : wbState===\"Charging\" ? \"NP\":\"N\";\n// 9 ESP devices continuously connected to the network\nleds[8]=[\"esp_heizung\",\"esp_hoymiles\",\"esp_sungrow\",\"esp_treppe\"].every(isHome) ? \"N\":\"AB\";\n// 10 Samba backup\nleds[9]=flow.get(\"backup_ok\")===true ? \"N\":\"AB\";\n// 11 Victron float or absorption\nleds[10]=(flow.get(\"pv_absorption\")===true || flow.get(\"pv_float\")===true) ? \"AB\":\"N\";\n// 12 unused; 13 Hoymiles production; 14/15 unused\nleds[12]=flow.get(\"hms_producing\")===true ? \"NP\":\"N\";\n// Battery status: 11 CCU3 binary sensors, 7 percentage values.\n// Treat unknown values as data errors only after 5 minutes.\nconst batteryBinary = [\"buero_wand_ok\", \"bad_wand_ok\", \"flur_wand_ok\", \"wohnzimmer_wand_ok\", \"schlafzimmer_wand_ok\", \"handtuchheizung_ok\", \"atelierheizung_ok\", \"schlafzimmerheizung_ok\", \"bad_fenster_homematic_ok\", \"atelier_fenster_homematic_ok\", \"schlafzimmer_fenster_homematic_ok\"];\nconst batteryPercent = [\"pv_akku_ok\", \"fenster_bad_shelly_ok\", \"fahrradschuppen_shelly_ok\", \"atelier_switchbot_ok\", \"hauswirtschaft_ok\", \"schweinestall_switchbot_ok\", \"haustuer_switchbot_ok\"];\n\nlet batteryWarnings = [], batteryAlarms = [], batteryMissing = [];\nfor (const [key, isBinary] of [...batteryBinary.map(k => [k,true]), ...batteryPercent.map(k => [k,false])]) {\n  const raw = flow.get(\"battery_raw_\" + key);\n  const valid = isBinary ? (raw === \"on\" || raw === \"off\") : (raw !== undefined && raw !== null && String(raw).trim() !== \"\" && Number.isFinite(Number(raw)));\n  if (valid) {\n    flow.set(\"battery_missing_since_\" + key, null);\n    if (isBinary && raw === \"on\") batteryAlarms.push(key);\n    if (!isBinary) {\n      const value = Number(raw);\n      if (value <= 20) batteryAlarms.push(key + \"=\" + value + \"%\");\n      else if (value <= 40) batteryWarnings.push(key + \"=\" + value + \"%\");\n    }\n  } else {\n    let since = flow.get(\"battery_missing_since_\" + key);\n    if (!since) { since = now; flow.set(\"battery_missing_since_\" + key, since); }\n    if (now - since >= 300000) batteryMissing.push(key);\n  }\n}\n// Alarm takes priority over data errors, followed by warnings.\nconst battery_token = batteryAlarms.length ? \"A\" : batteryMissing.length ? \"AB\" : batteryWarnings.length ? \"H\" : \"N\";\nconst battery_diagnose = {alarm:batteryAlarms, warnung:batteryWarnings, nicht_verfuegbar:batteryMissing};\nflow.set(\"battery_diagnose\", battery_diagnose);\n// Diagnostics only in flow context; no continuous warning logging\nnode.status({fill:battery_token === \"N\" ? \"green\" : battery_token === \"H\" ? \"blue\" : \"red\",shape:\"dot\",text:\"Batterie \" + battery_token + \" | A:\"+batteryAlarms.length+\" W:\"+batteryWarnings.length+\" X:\"+batteryMissing.length});\n\nleds[15]=battery_token;\n// 17/18 simple power detection (separate function nodes)\nleds[16]=flow.get(\"trockner_token\") || \"N\";\nleds[17]=flow.get(\"waschmaschine_token\") || \"N\";\n// 19/20: grid import >200W / export >500W, each for 5 minutes\nconst raw=val(\"meter_power\");\nconst p=valid(raw) && String(raw).trim()!==\"\" ? Number(raw):NaN;\nfunction timedLimit(key,condition) {\n if (!condition) {flow.set(key,null);return false;}\n let since=flow.get(key);\n if (!since) {since=now;flow.set(key,since);}\n return now-since>=300000;\n}\nleds[18]=timedLimit(\"grid_import_since\",Number.isFinite(p) && p>200) ? \"AB\":\"N\";\nleds[19]=timedLimit(\"grid_export_since\",Number.isFinite(p) && p< -500) ? \"AB\":\"N\";\n// 21 All shutters closed at night\nconst night=val(\"sun_state\")===\"below_horizon\";\nconst shuttersClosed=flow.get(\"rolladen_buero_ok\")===true && flow.get(\"rolladen_kueche_ok\")===true && val(\"rolladen_wohnzimmer\")===\"closed\";\nleds[20]=!valid(val(\"sun_state\")) || (night && !shuttersClosed) ? \"AB\":\"N\";\n// 22 Windows: open = A, missing data = AB\nconst win=[\"fenster_bad_ok\",\"fenster_schlafzimmer_ok\",\"fenster_atelier_ok\"].map(val);\nleds[21]=win.some(v=>v===false) ? \"A\" : win.every(v=>v===true) ? \"N\":\"AB\";\n// 23 Outdoor lighting: at least one light on\nconst lights=[\"giebel_ok\",\"strasse_ok\",\"terasse_ok\"].map(val);\nleds[22]=lights.every(v=>v===true) ? \"N\":\"AB\";\n// 24 Driveway: nighttime motion from camera or motion sensor\nconst drivewayMotion=val(\"reolink_ok\")===false || val(\"einfahrt_bm_ok\")===false;\nleds[23]=night && drivewayMotion ? \"AB\":\"N\";\n// 25 Fountain switched on\nleds[24]=val(\"brunnen_ok\")===true ? \"N\":\"AB\";\n// 26 unused\n// 27 Frost: <=1°C and humidity >70%\nconst t=Number(val(\"aussen_temp\"));const h=Number(val(\"aussen_luftfeuchte\"));\nleds[26]=valid(val(\"aussen_temp\")) && valid(val(\"aussen_luftfeuchte\")) && Number.isFinite(t) && Number.isFinite(h) && t<=1 && h>70 ? \"AB\":\"N\";\n// 28/29 Commute routes\nleds[27]=Number(val(\"pendelstrecke_person_1\"))>35 ? \"AB\":\"N\";\nleds[28]=Number(val(\"pendelstrecke_person_2\"))>40 ? \"AB\":\"N\";\n// 30 unused\nmsg.topic=\"stoermeldeboard/states\";\nmsg.payload=JSON.stringify(leds);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1170,
+    "y": 520,
+    "wires": [
+      [
+        "79034e6de3404726"
+      ]
+    ],
+    "icon": "node-red/light.svg"
+  },
+  {
+    "id": "278b96d6302b4b08",
+    "type": "mqtt in",
+    "z": "e6e7aa1316a943eb",
+    "name": "",
+    "topic": "stoermeldeboard/states",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "7a9931dde927938b",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 1200,
+    "y": 640,
+    "wires": [
+      [
+        "60739497957843e7"
+      ]
+    ]
+  },
+  {
+    "id": "60739497957843e7",
+    "type": "debug",
+    "z": "e6e7aa1316a943eb",
+    "name": "State MQTT_IN",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1440,
+    "y": 640,
+    "wires": []
+  },
+  {
+    "id": "a0d821643e554e30",
+    "type": "inject",
+    "z": "e6e7aa1316a943eb",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "[\"AB\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",  \"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",  \"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\",\"N\"]",
+    "payloadType": "str",
+    "x": 1150,
+    "y": 580,
+    "wires": [
+      [
+        "8c9685f08cc44478"
+      ]
+    ]
+  },
+  {
+    "id": "8c9685f08cc44478",
+    "type": "mqtt out",
+    "z": "e6e7aa1316a943eb",
+    "name": "State MQTT out",
+    "topic": "stoermeldeboard/states",
+    "qos": "1",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "7a9931dde927938b",
+    "x": 1440,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "2506ef53b7ec406d",
+    "type": "inject",
+    "z": "e6e7aa1316a943eb",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 1170,
+    "y": 440,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "4dceacc04b884239",
+    "type": "inject",
+    "z": "e6e7aa1316a943eb",
+    "name": "Konfig schreiben",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 540,
+    "y": 60,
+    "wires": [
+      [
+        "a36cc72337864157"
+      ]
+    ]
+  },
+  {
+    "id": "a36cc72337864157",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Setup Strip",
+    "func": "const cfg = {\n    version: 1,\n\n    layout: {\n        cols: 3,\n        rows: 10,\n        serpentine: true,\n        major: \"col\"      // col = col*rows + row (our layout)\n    },\n\n    global: {\n        master_brightness: 60,  // 0..255\n        timeout_ms: 15000,\n        fallback_token: \"A\"      // on failure, show solid red on all LEDs\n    },\n\n    tokens: {\n        // N = normal (LED off)\n        N: { rgb: [0, 0, 0], mode: \"static\", brightness: 0 },\n\n        // NP = pulsing green\n        NP: { rgb: [0, 255, 0], mode: \"pulse\", brightness: 255, pulse_ms: 1400, pulse_min: 20 },\n\n        // A = solid red\n        A: { rgb: [255, 0, 0], mode: \"static\", brightness: 255 },\n\n        // AB = blinking red\n        AB: { rgb: [255, 0, 0], mode: \"blink\", brightness: 255, blink_ms: 250, duty: 0.5 },\n\n        // H = informational status (pulsing blue)\n        H: { rgb: [0, 0, 255], mode: \"pulse\", brightness: 255 }\n    }\n};\n\nmsg.topic = \"stoermeldeboard/config\";\nmsg.payload = JSON.stringify(cfg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 750,
+    "y": 60,
+    "wires": [
+      [
+        "441e8f08f7624535"
+      ]
+    ]
+  },
+  {
+    "id": "441e8f08f7624535",
+    "type": "mqtt out",
+    "z": "e6e7aa1316a943eb",
+    "name": "Config MQTT out",
+    "topic": "stoermeldeboard/config",
+    "qos": "1",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "7a9931dde927938b",
+    "x": 1450,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "e43eb0fdfc254412",
+    "type": "mqtt in",
+    "z": "e6e7aa1316a943eb",
+    "name": "",
+    "topic": "stoermeldeboard/config",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "7a9931dde927938b",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 1200,
+    "y": 700,
+    "wires": [
+      [
+        "48ed5053a5c84d6b"
+      ]
+    ]
+  },
+  {
+    "id": "48ed5053a5c84d6b",
+    "type": "debug",
+    "z": "e6e7aa1316a943eb",
+    "name": "Config MQTT_IN",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1450,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "f4bcba8f37c64817",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Internet OK",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.fritz_box_4630_verbindung"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 380,
+    "wires": [
+      [
+        "96e4cb5cfcd64a9f"
+      ]
+    ]
+  },
+  {
+    "id": "96e4cb5cfcd64a9f",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 4",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"internet_ok\", state === \"on\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 380,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "d18c01cfeeba45bd",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "CCU3 HmIP-RF Verbindung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.ccu3_webui_connectivity_hmip_rf"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 620,
+    "wires": [
+      [
+        "b3c161e0579c4c96"
+      ]
+    ]
+  },
+  {
+    "id": "b3c161e0579c4c96",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "CCU3 HmIP-RF Status",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"ccu3_hmip_state\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 620,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "3392e77da7c64bbb",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Battery Status",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.victronble_mppt_state"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 680,
+    "wires": [
+      [
+        "d1b416c92c634ff4"
+      ]
+    ]
+  },
+  {
+    "id": "d1b416c92c634ff4",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 6",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"pv_absorption\", state === \"Absorption\");\nflow.set(\"pv_float\", state === \"Float\");\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 680,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "72fb01acabeb4f46",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "HMS produziert",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.hms1600_producing"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 740,
+    "wires": [
+      [
+        "0a15a08833ab4529"
+      ]
+    ]
+  },
+  {
+    "id": "0a15a08833ab4529",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "function 8",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"hms_producing\", state === \"on\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 740,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "eabe24dd7d0f472a",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Atelier Switchbot",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.weed_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 1760,
+    "wires": [
+      [
+        "831c2f8460354ce9"
+      ]
+    ]
+  },
+  {
+    "id": "4010622f5f2b4676",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "PV Battery Shelly",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.ausenfuhler_battery"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1580,
+    "wires": [
+      [
+        "44d91ebd98444e71"
+      ]
+    ]
+  },
+  {
+    "id": "7c15d15d65b844fe",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Office Wall Thermostat",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.buro_wandthermostat_buero_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 160,
+    "y": 920,
+    "wires": [
+      [
+        "4ba8968e64e14ab6"
+      ]
+    ]
+  },
+  {
+    "id": "7afd973064644e12",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bathroom Window Shelly",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.fenster_bad_battery"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1640,
+    "wires": [
+      [
+        "5cfa58a9bd43499c"
+      ]
+    ]
+  },
+  {
+    "id": "048ced2752b24497",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Towel Radiator",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.badezimmer_heizkoerperthermostat_handtuchheizung_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1220,
+    "wires": [
+      [
+        "d31ee0f9212e4ea5"
+      ]
+    ]
+  },
+  {
+    "id": "dc49b483888845ad",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Hauswirtschaftsraum Switchbot",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.hauswirtschaftsraum_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 230,
+    "y": 1820,
+    "wires": [
+      [
+        "a7f052677c104aab"
+      ]
+    ]
+  },
+  {
+    "id": "f8b5b82d47904e88",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Schlafzimmer Wand",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.schlafzimmer_wandthermostat_schlafzimmer_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1160,
+    "wires": [
+      [
+        "0013c4e1604849d0"
+      ]
+    ]
+  },
+  {
+    "id": "44117639b4264f16",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bathroom Window Homematic",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.badezimmer_fensterkontakt_bad_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 1400,
+    "wires": [
+      [
+        "be3a3b355b444aba"
+      ]
+    ]
+  },
+  {
+    "id": "ee0a260c0eca49a7",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Studio Radiator",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.atelier_heizkoerperthermostat_atelier_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1280,
+    "wires": [
+      [
+        "dce2348fa3be413d"
+      ]
+    ]
+  },
+  {
+    "id": "0c8ff2f6ef6d4b51",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bad Wand",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.badezimmer_wandthermostat_bad_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 160,
+    "y": 980,
+    "wires": [
+      [
+        "a7a7399c22154f4c"
+      ]
+    ]
+  },
+  {
+    "id": "84d08b8c5b9147af",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Fahrradschuppen Shelly",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.fahrradschuppen_temperatur_battery"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 1700,
+    "wires": [
+      [
+        "ef217908f3854833"
+      ]
+    ]
+  },
+  {
+    "id": "6e8cc050889244b7",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Flur Wand",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.flur_wandthermostat_flur_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 160,
+    "y": 1040,
+    "wires": [
+      [
+        "d97e67fa4d5c4847"
+      ]
+    ]
+  },
+  {
+    "id": "678b6b8edd4744ac",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Front Door SwitchBot",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.haustur_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1940,
+    "wires": [
+      [
+        "33c07dfb427248a6"
+      ]
+    ]
+  },
+  {
+    "id": "0226b116265844d0",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bedroom Radiator",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.schlafzimmer_heizkoerperthermostat_schlafzimmer_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 1340,
+    "wires": [
+      [
+        "3e1c435d7cb943c2"
+      ]
+    ]
+  },
+  {
+    "id": "7a2437b5278b48ed",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Schweinestall Switchbot",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.indoor_outdoor_meter_491a_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 200,
+    "y": 1880,
+    "wires": [
+      [
+        "2630adf260fc4e0d"
+      ]
+    ]
+  },
+  {
+    "id": "8fb6de8fdf114693",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Studio Window Homematic",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.atelier_fensterkontakt_atelier_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 1460,
+    "wires": [
+      [
+        "1cb57346a60b4f49"
+      ]
+    ]
+  },
+  {
+    "id": "48d8e43e742e4c2a",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bedroom Window Homematic",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.schlafzimmer_fensterkontakt_schlafzimmer_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 240,
+    "y": 1520,
+    "wires": [
+      [
+        "3cdb2104448a4457"
+      ]
+    ]
+  },
+  {
+    "id": "4501b7f4f8f14371",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Wohnzimmer Wand",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.wandthermostat_wohnzimmer_batterie"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 1100,
+    "wires": [
+      [
+        "fe1f56e23f4848d4"
+      ]
+    ]
+  },
+  {
+    "id": "44d91ebd98444e71",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "pv_akku_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"pv_akku_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_pv_akku_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 1580,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "5cfa58a9bd43499c",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "fenster_bad_shelly_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"fenster_bad_shelly_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_fenster_bad_shelly_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1640,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "ef217908f3854833",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "fahrradschuppen_shelly_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"fahrradschuppen_shelly_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_fahrradschuppen_shelly_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 1700,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "831c2f8460354ce9",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "atelier_switchbot_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"atelier_switchbot_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_atelier_switchbot_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1760,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "a7f052677c104aab",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "hauswirtschaft_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"hauswirtschaft_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_hauswirtschaft_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 1820,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "2630adf260fc4e0d",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "schweinestall_switchbot_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"schweinestall_switchbot_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_schweinestall_switchbot_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 1880,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "33c07dfb427248a6",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "haustuer_switchbot_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"haustuer_switchbot_ok\", parseFloat(state) > 20);\nflow.set(\"battery_raw_haustuer_switchbot_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1940,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "4ba8968e64e14ab6",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "buero_wand_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"buero_wand_ok\", state === \"off\");\nflow.set(\"battery_raw_buero_wand_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 920,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "a7a7399c22154f4c",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "bad_wand_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"bad_wand_ok\", state === \"off\");\nflow.set(\"battery_raw_bad_wand_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 980,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "d97e67fa4d5c4847",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "flur_wand_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"flur_wand_ok\", state === \"off\");\nflow.set(\"battery_raw_flur_wand_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 1040,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "fe1f56e23f4848d4",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "wohnzimmer_wand_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"wohnzimmer_wand_ok\", state === \"off\");\nflow.set(\"battery_raw_wohnzimmer_wand_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1100,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "0013c4e1604849d0",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "schlafzimmer_wand_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"schlafzimmer_wand_ok\", state === \"off\");\nflow.set(\"battery_raw_schlafzimmer_wand_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 1160,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "d31ee0f9212e4ea5",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "handtuchheizung_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"handtuchheizung_ok\", state === \"off\");\nflow.set(\"battery_raw_handtuchheizung_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1220,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "dce2348fa3be413d",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "atelierheizung_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"atelierheizung_ok\", state === \"off\");\nflow.set(\"battery_raw_atelierheizung_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 1280,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "3e1c435d7cb943c2",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "schlafzimmerheizung_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"schlafzimmerheizung_ok\", state === \"off\");\nflow.set(\"battery_raw_schlafzimmerheizung_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 1340,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "be3a3b355b444aba",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "bad_fenster_homematic_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"bad_fenster_homematic_ok\", state === \"off\");\nflow.set(\"battery_raw_bad_fenster_homematic_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 1400,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "1cb57346a60b4f49",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "atelier_fenster_homematic_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"atelier_fenster_homematic_ok\", state === \"off\");\nflow.set(\"battery_raw_atelier_fenster_homematic_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 550,
+    "y": 1460,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "3cdb2104448a4457",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "schlafzimmer_fenster_homematic_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"schlafzimmer_fenster_homematic_ok\", state === \"off\");\nflow.set(\"battery_raw_schlafzimmer_fenster_homematic_ok\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 570,
+    "y": 1520,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "2aead0b2db314afc",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Backup Zeitpunkt",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "input_datetime.letztes_samba_backup"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 800,
+    "wires": [
+      [
+        "2f19107acae14550"
+      ]
+    ]
+  },
+  {
+    "id": "2f19107acae14550",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "backup_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\n// If empty/unknown/unavailable -> FAIL\nif (!state || state === \"unknown\" || state === \"unavailable\") {\n  flow.set(\"backup_ok\", false);\n  node.warn(`Backup timestamp invalid state: ${state}`);\n  return msg;\n}\n\n// \"YYYY-MM-DD HH:MM:SS\" -> \"YYYY-MM-DDTHH:MM:SS\"\nconst iso = state.replace(\" \", \"T\");\n\n// Timestamp in milliseconds\nconst backupMs = Date.parse(iso);\nconst nowMs = Date.now();\n\nif (isNaN(backupMs)) {\n  flow.set(\"backup_ok\", false);\n  node.warn(`Backup timestamp parse failed: ${state} -> ${iso}`);\n  return msg;\n}\n\nconst diffDays = (nowMs - backupMs) / (1000 * 60 * 60 * 24);\nconst ok = diffDays <= 7;\n\nflow.set(\"backup_ok\", ok);\nnode.warn(`Backup age: ${diffDays.toFixed(2)} days -> backup_ok=${ok}`);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 800,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "ca4fa40b70294fa3",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Trockner Leistung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.trockner_switch_0_power"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 2060,
+    "wires": [
+      [
+        "9d526280b2c2443c"
+      ]
+    ]
+  },
+  {
+    "id": "4911a6e6446b4bff",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Waschmaschine Leistung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.waschmaschine_switch_0_power"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 2140,
+    "wires": [
+      [
+        "0076326b37fa45ed"
+      ]
+    ]
+  },
+  {
+    "id": "9d526280b2c2443c",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "trockner_token",
+    "func": "// dryer token: above 10 W = NP, below 10 W for 5 minutes = N.\n// Event payload is entityState as a string; ticker is a numeric timestamp.\nconst incoming=msg.payload;\nconst event=typeof incoming===\"string\" ? incoming : (incoming && typeof incoming===\"object\" ? incoming.state : undefined);\nif (event!==undefined) {\n const p=Number(event);\n if (String(event).trim()!==\"\" && Number.isFinite(p)) flow.set(\"trockner_power_v2\",p);\n}\nconst p=flow.get(\"trockner_power_v2\");\nconst now=Date.now();\nlet active=flow.get(\"trockner_running_v2\")===true;\nlet below=flow.get(\"trockner_below_since_v2\") || 0;\nif (typeof p===\"number\" && Number.isFinite(p)) {\n if (p>10) {active=true;below=0;}\n else if (active) {\n  if (!below) below=now;\n  if (now-below>=5*60000) {active=false;below=0;}\n } else below=0;\n}\nflow.set(\"trockner_running_v2\",active);\nflow.set(\"trockner_below_since_v2\",below);\nflow.set(\"trockner_token\",active ? \"NP\":\"N\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 2060,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "0076326b37fa45ed",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "waschmaschine_token",
+    "func": "// washing machine token: above 10 W = NP, below 10 W for 10 minutes = N.\n// Event payload is entityState as a string; ticker is a numeric timestamp.\nconst incoming=msg.payload;\nconst event=typeof incoming===\"string\" ? incoming : (incoming && typeof incoming===\"object\" ? incoming.state : undefined);\nif (event!==undefined) {\n const p=Number(event);\n if (String(event).trim()!==\"\" && Number.isFinite(p)) flow.set(\"waschmaschine_power_v2\",p);\n}\nconst p=flow.get(\"waschmaschine_power_v2\");\nconst now=Date.now();\nlet active=flow.get(\"waschmaschine_running_v2\")===true;\nlet below=flow.get(\"waschmaschine_below_since_v2\") || 0;\nif (typeof p===\"number\" && Number.isFinite(p)) {\n if (p>10) {active=true;below=0;}\n else if (active) {\n  if (!below) below=now;\n  if (now-below>=10*60000) {active=false;below=0;}\n } else below=0;\n}\nflow.set(\"waschmaschine_running_v2\",active);\nflow.set(\"waschmaschine_below_since_v2\",below);\nflow.set(\"waschmaschine_token\",active ? \"NP\":\"N\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 2140,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "b4b37846f96c4fa7",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Office Shutter",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "cover.arbeitszimmer_rolladen"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 2220,
+    "wires": [
+      [
+        "3e4f831959ee4d38"
+      ]
+    ]
+  },
+  {
+    "id": "51e6eab70aa04be9",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Kitchen Shutter",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "cover.rolladen_kuche_cover_0"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 2280,
+    "wires": [
+      [
+        "d685e8499eba48bd"
+      ]
+    ]
+  },
+  {
+    "id": "3e4f831959ee4d38",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "rolladen_buero_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"rolladen_buero_ok\", state === \"closed\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 2220,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "d685e8499eba48bd",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "rolladen_kueche_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"rolladen_kueche_ok\", state === \"closed\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 2280,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "11930c9e1fca4f53",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bathroom Window",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.badezimmer_fensterkontakt_bad"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 2360,
+    "wires": [
+      [
+        "7b4b064119484743"
+      ]
+    ]
+  },
+  {
+    "id": "7b4b064119484743",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "fenster_bad_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"fenster_bad_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 2360,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "11c87b1dc36040e7",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Studio Window",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.atelier_fensterkontakt_atelier"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 2420,
+    "wires": [
+      [
+        "5f016358087f493a"
+      ]
+    ]
+  },
+  {
+    "id": "1de834e74b504617",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Bedroom Window",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.schlafzimmer_fensterkontakt_schlafzimmer"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 200,
+    "y": 2480,
+    "wires": [
+      [
+        "61cfbb70f35d4503"
+      ]
+    ]
+  },
+  {
+    "id": "5f016358087f493a",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "fenster_atelier_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"fenster_atelier_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 2420,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "61cfbb70f35d4503",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "fenster_schlafzimmer_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"fenster_schlafzimmer_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 2480,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "54cdf2a637554b0f",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Giebelbeleuchtung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "switch.ausenbeleuchtung_switch_0"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 2560,
+    "wires": [
+      [
+        "187e6d8969264b66"
+      ]
+    ]
+  },
+  {
+    "id": "d0bed05f8acd4e7f",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Street Lighting",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "switch.ausenbeleuchtung_switch_1"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 2620,
+    "wires": [
+      [
+        "f93c77344aa2412c"
+      ]
+    ]
+  },
+  {
+    "id": "f31d40962b014a20",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Terassenbeleuchtung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "switch.plug_mini_eu_af96"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 200,
+    "y": 2680,
+    "wires": [
+      [
+        "050ea4c019ad4a28"
+      ]
+    ]
+  },
+  {
+    "id": "187e6d8969264b66",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "giebel_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"giebel_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 2560,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "f93c77344aa2412c",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "strasse_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"strasse_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 2620,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "050ea4c019ad4a28",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "terasse_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"terasse_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 2680,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "a4ec8284bac948b5",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Reolink Person",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.einfahrtkamerareolink_person"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 2760,
+    "wires": [
+      [
+        "5c46265ff3e34b39"
+      ]
+    ]
+  },
+  {
+    "id": "fe7c66e836f643f8",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Driveway Motion Sensor",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.einfahrt_input_0_input"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 2820,
+    "wires": [
+      [
+        "b7ff1762b3114b70"
+      ]
+    ]
+  },
+  {
+    "id": "5c46265ff3e34b39",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "reolink_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"reolink_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 2760,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "b7ff1762b3114b70",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "einfahrt_bm_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"einfahrt_bm_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 2820,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "9e0685bede114181",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Brunnen an",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "switch.shellyplus1_d4d4daf49ce4_switch_0"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 170,
+    "y": 2900,
+    "wires": [
+      [
+        "5bfd8ccbbb2e4475"
+      ]
+    ]
+  },
+  {
+    "id": "5bfd8ccbbb2e4475",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "brunnen_ok",
+    "func": "const state = (typeof msg.payload === \"object\")\n  ? msg.payload.state\n  : msg.payload;\n\nflow.set(\"brunnen_ok\", state === \"off\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 2900,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "d11425ddc8f54d44",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Outdoor Humidity",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.ausenfuhler_humidity"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 210,
+    "y": 3100,
+    "wires": [
+      [
+        "f4500c32fa89441e"
+      ]
+    ]
+  },
+  {
+    "id": "7782b7aa14f04b27",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Outdoor Temperature",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.ausenfuhler_temperature"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 3040,
+    "wires": [
+      [
+        "43798c4b5e4d47ef"
+      ]
+    ]
+  },
+  {
+    "id": "43798c4b5e4d47ef",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "aussen_temp",
+    "func": "const temp = parseFloat(msg.payload);\nflow.set(\"aussen_temp\", temp);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 3040,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "f4500c32fa89441e",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "aussen_luftfeuchte",
+    "func": "const temp = parseFloat(msg.payload);\nflow.set(\"aussen_luftfeuchte\", temp);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 3100,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "b1b849373e3b4a1c",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Person 1 Pendeldauer",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.person_1pendelstrecke"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": false,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 3180,
+    "wires": [
+      [
+        "0a5d109c0c3741b1"
+      ]
+    ]
+  },
+  {
+    "id": "ba3a09137a564708",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Person 2 Pendeldauer",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.person_2pendelstrecke"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": false,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 3240,
+    "wires": [
+      [
+        "36de9b2ec6fb47ab"
+      ]
+    ]
+  },
+  {
+    "id": "0a5d109c0c3741b1",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "pendelstrecke_person_1",
+    "func": "const value = parseFloat(msg.payload);\nflow.set(\"pendelstrecke_person_1\", value);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 3180,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "36de9b2ec6fb47ab",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "pendelstrecke_person_2",
+    "func": "const value = parseFloat(msg.payload);\nflow.set(\"pendelstrecke_person_2\", value);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 3240,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "0a1a3dd45b78470e",
+    "type": "inject",
+    "z": "e6e7aa1316a943eb",
+    "name": "60s_puls",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "60",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 310,
+    "y": 2100,
+    "wires": [
+      [
+        "9d526280b2c2443c",
+        "0076326b37fa45ed"
+      ]
+    ]
+  },
+  {
+    "id": "ebee7ca5b4ab41d4",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "CCU3 VirtualDevices Verbindung",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.ccu3_webui_connectivity_virtualdevices"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 190,
+    "y": 660,
+    "wires": [
+      [
+        "d846af8539b0449e"
+      ]
+    ]
+  },
+  {
+    "id": "d846af8539b0449e",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "CCU3 VirtualDevices Status",
+    "func": "const state = (typeof msg.payload === \"object\") ? msg.payload.state : msg.payload;\nflow.set(\"ccu3_virtual_state\", String(state));\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 660,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "8ec9e669ecbc431b",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Sungrow FRITZ!Box",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "device_tracker.sungrow_inverter"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3580,
+    "wires": [
+      [
+        "9eef5db9cf9b4771"
+      ]
+    ]
+  },
+  {
+    "id": "9eef5db9cf9b4771",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Sungrow FRITZ!Box",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"sungrow_reachable\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3580,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "1fe2f9b31b1c49aa",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "EMS-ESP System",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.system_status"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3660,
+    "wires": [
+      [
+        "7b3b68b403804363"
+      ]
+    ]
+  },
+  {
+    "id": "7b3b68b403804363",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: EMS-ESP System",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wp_system\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3660,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "b90d6ad39a7d403c",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "EMS Bus",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.system_bus_status"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3740,
+    "wires": [
+      [
+        "6a5ff5e9c3a74fb9"
+      ]
+    ]
+  },
+  {
+    "id": "6a5ff5e9c3a74fb9",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: EMS Bus",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wp_bus\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3740,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "0d07527d7df740c7",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "WP Betriebsart",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.boiler_hpactivity"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3820,
+    "wires": [
+      [
+        "9e8d39d3b3044677"
+      ]
+    ]
+  },
+  {
+    "id": "9e8d39d3b3044677",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: WP Betriebsart",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wp_activity\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3820,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "5068ae5806194b1d",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "WP Verdichter",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "binary_sensor.boiler_hpcompon"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3900,
+    "wires": [
+      [
+        "f777598879a24853"
+      ]
+    ]
+  },
+  {
+    "id": "f777598879a24853",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: WP Verdichter",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wp_compressor\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3900,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "579fb2d803804de1",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Wallbox OCPP Status",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.evc04_status_connector"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 3980,
+    "wires": [
+      [
+        "4bd2e8f7629742a8"
+      ]
+    ]
+  },
+  {
+    "id": "4bd2e8f7629742a8",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Wallbox OCPP Status",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wallbox_status\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 3980,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "520bfc4261cb4974",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Wallbox Heartbeat",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.evc04_heartbeat"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4060,
+    "wires": [
+      [
+        "021659c4cdb54d4c"
+      ]
+    ]
+  },
+  {
+    "id": "021659c4cdb54d4c",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Wallbox Heartbeat",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"wallbox_heartbeat\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4060,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "197870f113f8495d",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "ESP Heating Sensors",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "device_tracker.heizungssensoren"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4140,
+    "wires": [
+      [
+        "d79d1765177649c7"
+      ]
+    ]
+  },
+  {
+    "id": "d79d1765177649c7",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: ESP Heating Sensors",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"esp_heizung\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4140,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "fe9c824486094628",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "ESP Hoymiles Fan",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "device_tracker.lufter_hoymiles"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4220,
+    "wires": [
+      [
+        "d3ae8c8f818b419f"
+      ]
+    ]
+  },
+  {
+    "id": "d3ae8c8f818b419f",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: ESP Hoymiles Fan",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"esp_hoymiles\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4220,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "47b38349f302442e",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "ESP Sungrow Fan",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "device_tracker.lufter_sungrow"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4300,
+    "wires": [
+      [
+        "7488131bf0ce4a39"
+      ]
+    ]
+  },
+  {
+    "id": "7488131bf0ce4a39",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: ESP Sungrow Fan",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"esp_sungrow\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4300,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "8107424839894e49",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "ESP Staircase Light",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "device_tracker.treppenlicht"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4380,
+    "wires": [
+      [
+        "3b63c519125f4ec8"
+      ]
+    ]
+  },
+  {
+    "id": "3b63c519125f4ec8",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: ESP Staircase Light",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"esp_treppe\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4380,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "5a793b46ef2d4897",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Living Room Shutter",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "cover.rolladen_wohnzimmer_3"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4460,
+    "wires": [
+      [
+        "8b1c2358ca464a4e"
+      ]
+    ]
+  },
+  {
+    "id": "8b1c2358ca464a4e",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Living Room Shutter",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"rolladen_wohnzimmer\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4460,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "6ac7bf2fa2a54c58",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Sonnenstand",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sun.sun"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4540,
+    "wires": [
+      [
+        "0c63a44c637f40fe"
+      ]
+    ]
+  },
+  {
+    "id": "0c63a44c637f40fe",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Sonnenstand",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"sun_state\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4540,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "6e0ece55eab34ce0",
+    "type": "server-state-changed",
+    "z": "e6e7aa1316a943eb",
+    "name": "Grid Power Import/Export",
+    "server": "b0924c44.4f1be",
+    "version": 6,
+    "outputs": 1,
+    "exposeAsEntityConfig": "",
+    "entities": {
+      "entity": [
+        "sensor.meter_active_power"
+      ],
+      "substring": [],
+      "regex": []
+    },
+    "outputInitially": true,
+    "stateType": "str",
+    "ifState": "",
+    "ifStateType": "str",
+    "ifStateOperator": "is",
+    "outputOnlyOnStateChange": true,
+    "for": "0",
+    "forType": "num",
+    "forUnits": "minutes",
+    "ignorePrevStateNull": false,
+    "ignorePrevStateUnknown": false,
+    "ignorePrevStateUnavailable": false,
+    "ignoreCurrentStateUnknown": false,
+    "ignoreCurrentStateUnavailable": false,
+    "outputProperties": [
+      {
+        "property": "payload",
+        "propertyType": "msg",
+        "value": "string",
+        "valueType": "entityState"
+      },
+      {
+        "property": "data",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "eventData"
+      },
+      {
+        "property": "topic",
+        "propertyType": "msg",
+        "value": "",
+        "valueType": "triggerId"
+      }
+    ],
+    "x": 180,
+    "y": 4620,
+    "wires": [
+      [
+        "aaed119ce9ba4d4b"
+      ]
+    ]
+  },
+  {
+    "id": "aaed119ce9ba4d4b",
+    "type": "function",
+    "z": "e6e7aa1316a943eb",
+    "name": "Status: Grid Power Import/Export",
+    "func": "const v = (msg.payload && typeof msg.payload === \"object\" && msg.payload.state !== undefined) ? msg.payload.state : msg.payload;\nflow.set(\"meter_power\", v);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 4620,
+    "wires": [
+      [
+        "1a522c925c2d47f0"
+      ]
+    ]
+  },
+  {
+    "id": "7a9931dde927938b",
+    "type": "mqtt-broker",
+    "name": "HomeAssistant",
+    "broker": "192.0.2.10",
+    "port": 1883,
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": 4,
+    "keepalive": 60,
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "b0924c44.4f1be",
+    "type": "server",
+    "name": "Home Assistant",
+    "addon": true
+  },
+  {
+    "id": "98f4d1c6ab6092bf",
+    "type": "global-config",
+    "env": [],
+    "modules": {
+      "node-red-contrib-home-assistant-websocket": "0.82.0"
+    }
+  }
+]
