@@ -1,6 +1,6 @@
 # HA StatusFrame
 
-![HA StatusFrame](images/statusframe-front.jpg)
+![HA StatusFrame](images/statusframe-installed.jpg)
 
 **A real-world ESP32 LED status display for Home Assistant.**
 
