@@ -1,5 +1,12 @@
 # HA StatusFrame
 
+![HA StatusFrame](images/statusframe-front.jpg)
+
+**A real-world ESP32 LED status display for Home Assistant.**
+
+[View Hardware Documentation](hardware.md) |
+[View Wiring Diagram](HA-StatusFrame_Wiring_Diagram_As-Built.svg)
+
 **An ESP32-powered 30-LED status display for Home Assistant, ESPHome and Node-RED.**
 
 This repository shares a real, personalized Home Assistant installation, not a generic plug-and-play product. It uses a 30-pixel WS2812B LED array to display device availability, energy flows, heating, household appliances, security-related states and other automation signals.
