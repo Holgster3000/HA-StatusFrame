@@ -49,6 +49,57 @@ Node-RED flow used in this project.
 The complete Node-RED flow is available in the
 [node-red](node-red/) directory.
 
+## Monitored Systems & Integrations
+
+HA StatusFrame combines several specialized systems from
+a real Home Assistant installation into a single LED
+status display.
+
+The following integrations are particularly interesting
+because they involve specialized hardware, custom firmware
+or communication protocols.
+
+| System / Hardware | HA Integration | Monitored Function |
+|---|---|---|
+| **Buderus WLW186i Heat Pump** | EMS-ESP (EMS bus) | Heat pump and compressor operation |
+| **Vestel EVC04 / E.ON Wallbox** | OCPP | EV charging activity and wallbox availability |
+| **Victron MPPT Charge Controller** | Victron / MQTT | Charge controller availability and battery status |
+| **Hoymiles HMS-1600** | OpenDTU | Microinverter availability and PV production |
+| **Sungrow SH10RT Hybrid Inverter** | Modbus TCP | Inverter availability and PV system status |
+| **Homematic IP / CCU3** | Homematic(IP) Local | CCU connectivity and device availability |
+
+### Integration Architecture
+
+All monitored systems provide their operating states
+to Home Assistant through their respective integrations.
+
+Node-RED evaluates these states and converts them into
+individual status indicators.
+
+The resulting LED states are transmitted via MQTT to
+the ESP32 running ESPHome.
+
+**Data flow:**
+
+Hardware → Home Assistant → Node-RED → MQTT → ESPHome → WS2812B
+
+### Why These Integrations?
+
+The purpose of HA StatusFrame is not to demonstrate
+individual integrations that are already well documented.
+
+Instead, the project demonstrates how different
+technologies and communication protocols can be combined
+into a centralized physical status display.
+
+The LED board provides an immediate overview of
+system availability, faults and active operating states
+without opening the Home Assistant dashboard.
+
+This is a reference implementation based on a real
+installation. Other Home Assistant entities and systems
+can be added by adapting the Node-RED flow.
+
 ## LED status tokens
 
 | Token | Display | Meaning |
