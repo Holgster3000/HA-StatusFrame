@@ -63,7 +63,7 @@ or communication protocols.
 |---|---|---|
 | **Buderus WLW186i Heat Pump** | EMS-ESP (EMS bus) | Heat pump and compressor operation |
 | **Vestel EVC04 / E.ON Wallbox** | OCPP | EV charging activity and wallbox availability |
-| **Victron MPPT Charge Controller** | Victron / MQTT | Charge controller availability and battery status |
+| **Victron MPPT Charge Controller** | VictronBLE | Charge controller availability and battery status |
 | **Hoymiles HMS-1600** | OpenDTU | Microinverter availability and PV production |
 | **Sungrow SH10RT Hybrid Inverter** | Modbus TCP | Inverter availability and PV system status |
 | **Homematic IP / CCU3** | Homematic(IP) Local | CCU connectivity and device availability |
