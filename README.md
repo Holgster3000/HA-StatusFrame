@@ -32,6 +32,23 @@ Home Assistant entities → Node-RED status logic → MQTT broker
                                                     30 WS2812B LEDs
 ```
 
+### Node-RED Flow
+
+Node-RED collects and processes various Home Assistant
+entity states and combines them into a single status
+message for the LED display.
+
+The resulting status information is transmitted to
+the ESP32 via MQTT.
+
+The screenshot below shows an excerpt of the actual
+Node-RED flow used in this project.
+
+![HA StatusFrame Node-RED Flow](images/nodered_flow.jpg)
+
+The complete Node-RED flow is available in the
+[node-red](node-red/) directory.
+
 ## LED status tokens
 
 | Token | Display | Meaning |
